@@ -19,7 +19,7 @@
       >
       </textarea>
     </div>
-    <div class="form-group">
+    <div class="form-group mx-auto text-center">
       <button
         :disabled="!isValid"
         class="btn btn-block btn-primary mt-3"
@@ -45,6 +45,8 @@ export default {
   methods: {
     createPost(post) {
       this.$store.dispatch("createPost", post);
+      this.post.title = '';
+      this.post.content = '';
     },
   },
   computed: {

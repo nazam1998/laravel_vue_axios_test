@@ -5,6 +5,7 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      v-on-clickaway="close"
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -57,11 +58,13 @@
     </div>
 </template>
 <script>
+import { mixin as clickaway } from 'vue-clickaway';
 export default {
   name: "PostModal",
   props: {
     post: Object,
   },
+  mixins: [ clickaway ],
   data() {
     return {
       title: "",
