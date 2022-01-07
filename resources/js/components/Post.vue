@@ -6,16 +6,11 @@
       <button class="btn btn-danger" @click="deletePost(post)">
         <i style="color: white" class="fa fa-trash"></i>
       </button>
-      <button
-        type="button"
-        class="btn btn-warning"
-        data-bs-toggle="modal"
-        :data-bs-target="'#' + post.title + post.id"
-      >
+      <button type="button" class="btn btn-warning" @click="setModal">
         <i style="color: white" class="fa fa-pen"></i>
       </button>
     </td>
-    <post-modal :post="post" />
+    <post-modal :post="post" v-if="showModal" @hideModal="setModal" />
   </tr>
 </template>
 <script>
@@ -28,10 +23,17 @@ export default {
   props: {
     post: Object,
   },
-
+  data() {
+    return {
+      showModal: false,
+    };
+  },
   methods: {
     deletePost(post) {
       this.$store.dispatch("deletePost", post);
+    },
+    setModal() {
+      this.showModal = !this.showModal;
     },
   },
 };
